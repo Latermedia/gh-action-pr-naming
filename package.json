@@ -1,7 +1,7 @@
 {
   "name": "temp_test_jake",
   "version": "1.0.0",
-  "description": "will delete soon",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,7 +19,6 @@
   "homepage": "https://github.com/Latermedia/temp_test_jake#readme",
   "dependencies": {
     "@actions/core": "^1.10.0",
-    "@actions/github": "^5.1.1",
-    "@vercel/ncc": "^0.34.0"
+    "@actions/github": "^5.1.1"
   }
 }
