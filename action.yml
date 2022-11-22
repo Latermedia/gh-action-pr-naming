@@ -1,14 +1,9 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: Jira Check
+description: Check that pull request titles contain a Jira issue.
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  pattern:
+    description: 'A regex pattern to check if a pull request title is valid.'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
-  
+  using: node12
+  main: dist/index.js

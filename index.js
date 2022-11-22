@@ -3,14 +3,19 @@ const github = require('@actions/github');
 
 
 try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+    const pattern = core.getInput('pattern')
+    const regex = new RegExp(pattern)
+    const title =
+      github.context.payload &&
+      github.context.payload.pull_request &&
+      github.context.payload.pull_request.title
+    core.info(title)
+    const isValid = regex.test(title)
+    if (!isValid) {
+      core.setFailed(
+        `Pull request title "${title}" does not match regex pattern "${pattern}".`,
+      )
+    }
 } catch (error) {
   core.setFailed(error.message);
 }
