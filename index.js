@@ -13,7 +13,7 @@ try {
     const isValid = regex.test(title)
     if (!isValid) {
       core.setFailed(
-        `Pull request title "${title}" does not match regex pattern "${pattern}".`,
+        `Please include the JIRA ticket in the Pull Request Title. Pull request title "${title}" does not match regex pattern "${pattern}".`,
       )
     }
 } catch (error) {
