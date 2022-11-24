@@ -1,23 +1,36 @@
 # Hello world javascript action
 
-This action prints "Hello World" or "Hello" + the name of a person to greet to the log.
+This action checks PR title includes a given regex. Typically this will be set in main.yaml to match a JIRA ticket 
 
 ## Inputs
 
-### `who-to-greet`
+### `pattern`
 
-**Required** The name of the person to greet. Default `"World"`.
+**Required** The regex that must be matched as part of the PR title`.
 
 ## Outputs
 
-### `time`
+### A status check on the PR
 
 The time we greeted you.
 
 ## Example usage
 
 ```yaml
-uses: actions/hello-world-javascript-action@v1.1
-with:
-  who-to-greet: 'Mona the Octocat'
+on:
+  pull_request:
+    types:
+      # Check title when opened.
+      - opened
+      # Check title when new commits are pushed.
+      - synchronize
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Latermedia/gh-action-pr-naming@v1.2
+        with:
+          # Match pull request titles with JIRA Key format.
+          pattern: '((?<!([A-Za-z]{1,10})-?)[A-Z]+-\d+)'
 ```
