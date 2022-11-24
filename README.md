@@ -1,4 +1,4 @@
-# Hello world javascript action
+# Pull Request Naming Convention
 
 This action checks PR title includes a given regex. Typically this will be set in main.yaml to match a JIRA ticket 
 
